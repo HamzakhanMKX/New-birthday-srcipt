@@ -1,0 +1,124 @@
+import time
+import os
+import random
+from datetime import datetime
+
+def clear_screen():
+    # Clear command for Windows or Unix-like systems
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def display_heart(size=10):
+    """Display an ASCII heart of specified size"""
+    for i in range(size):
+        # Upper part of the heart
+        if i < size // 2:
+            spaces = abs(size // 2 - i) * 2
+            print(' ' * spaces + '*' * (size * 2 - spaces * 2))
+        # Lower part of the heart
+        else:
+            spaces = i - size // 2
+            width = size * 2 - spaces * 4
+            if width > 0:
+                print(' ' * (spaces * 2) + '*' * width)
+
+def display_fireworks():
+    """Display simple ASCII fireworks animation"""
+    firework_patterns = [
+        "    *    ",
+        "  * * *  ",
+        "* * * * *",
+        "  * * *  ",
+        "    *    "
+    ]
+    
+    for _ in range(3):  # 3 fireworks
+        clear_screen()
+        print("\n\n\n")
+        for pattern in firework_patterns:
+            padding = random.randint(5, 20)
+            print(" " * padding + pattern)
+            time.sleep(0.1)
+        time.sleep(0.3)
+
+def celebrate_birthday(name):
+    """Main function to display birthday celebration"""
+    clear_screen()
+    
+    # Get current date for personalized message
+    current_date = datetime.now().strftime("%B %d, %Y")
+    
+    # Countdown
+    for i in range(3, 0, -1):
+        clear_screen()
+        print(f"\n\n\n\n{'*' * 50}")
+        print(f"{'*' * 50}")
+        print(f"\n\n{' ' * 20}{i}...")
+        time.sleep(1)
+    
+    # Birthday message
+    clear_screen()
+    print("\n\n")
+    print(f"{'*' * 60}")
+    print(f"{'*' * 60}")
+    print(f"\n{'Happy Birthday '.center(60, '*')}")
+    print(f"{name.upper().center(60, '*')}")
+    print(f"\n{'*' * 60}")
+    print(f"{'*' * 60}")
+    
+    time.sleep(2)
+    
+    # Display heart
+    clear_screen()
+    display_heart(15)
+    time.sleep(1)
+    
+    # Display fireworks
+    display_fireworks()
+    
+    # Final message
+    clear_screen()
+    print("\n\n")
+    print(f"{'*' * 60}")
+    print("\n")
+    print(f"Dear {name},".center(60))
+    print("\n")
+    print("On this special day, I want you to know".center(60))
+    print("how much you mean to me.".center(60))
+    print("\n")
+    print("Your smile brightens my darkest days.".center(60))
+    print("Your laugh is my favorite melody.".center(60))
+    print("Your love is the greatest gift.".center(60))
+    print("\n")
+    print(f"Happy Birthday, my love!".center(60))
+    print(f"Today: {current_date}".center(60))
+    print("\n")
+    print(f"{'*' * 60}")
+    
+    time.sleep(2)
+    
+    # Floating hearts animation
+    for _ in range(10):
+        clear_screen()
+        print("\n\n")
+        print(f"{'*' * 60}")
+        print("\n")
+        print(f"I ❤️ {name} ❤️".center(60))
+        print("\n")
+        for _ in range(5):
+            row = ""
+            for _ in range(60):
+                if random.random() < 0.05:  # 5% chance of heart on each position
+                    row += "❤️"
+                else:
+                    row += " "
+            print(row)
+        print("\n")
+        print(f"{'*' * 60}")
+        time.sleep(0.5)
+
+if __name__ == "__main__":
+    girlfriend_name = input("Enter your girlfriend's name: ")
+    celebrate_birthday(girlfriend_name)
+    
+    # Keep the console open until user presses a key
+    input("\nPress Enter to exit...")
